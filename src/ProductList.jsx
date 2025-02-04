@@ -6,13 +6,9 @@ import './ProductList.css'
 
 // Tasks for students:
 // Create a component that takes the product list as a prop and maps through it.
-// For each product, render a ProductItem component.
-// Apply custom CSS to style the product list.
+// For each product, render a ProductItem component. Apply custom CSS to style the product list.
 
 function ProductList({ productList, setProductList, visibleProducts, setVisibleProducts }) {
-    let initialItemCount = 4;
-    console.log(initialItemCount)
-
     const addProduct = () => {
         const newProduct = {}
         let currentProductList = productList;
@@ -22,13 +18,12 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
         newProduct.imageLink = prompt("Please copy and paste the image link for the product: ");
         newProduct.description = prompt("Please enter a brief description of the album: ");
         newProduct.genre = prompt("What is the primary genre for the album: ");
-        newProduct.id = initialItemCount += 1;
+        newProduct.id = productList.length += 1;
         newProduct.inStock = "Yes";
         
         currentProductList.push(newProduct)
         setProductList([...currentProductList])
         setVisibleProducts([...currentProductList])
-        initialItemCount += 1;
     }
 
     const deleteProduct = () => {
@@ -45,7 +40,6 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
 
         if (foundIndex !== -1) {
             currentProductList.splice(foundIndex, 1)
-            console.log("updated currentProductList: ", currentProductList)
             setProductList([...currentProductList])
             setVisibleProducts([...currentProductList])
         }
@@ -53,32 +47,28 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
 
     const updateVisibleList = () => {
         let visibleListNow = visibleProducts;
-        let filteredList = visibleProducts.filter((product) => product.genre === "R&B")
-        
-        console.log("productList: ", productList)
-        console.log("visibleList: ", visibleListNow)
-        console.log("filteredList: ", filteredList)
+        let filteredList = visibleListNow.filter((product) => product.genre === "R&B")
 
         if (visibleListNow.length !== filteredList.length) {
             setVisibleProducts([...filteredList])
         } else {
-            setVisibleProducts([...visibleListNow])
+            setVisibleProducts([...productList])
         }
     }
 
     return (
         <div>
-            <h1>Welcome to the JeniDub Record Shop</h1>
+            <h1 className="rampart-one-header">Welcome to the JeniDub Record Shop</h1>
             <h2>Here is the list of products we have for all of you vintage lovers out there!</h2>
             <div className="product-list">
-                {productList.map((productInfo) => {
+                {visibleProducts.map((productInfo) => {
                     return <ProductItem key={productInfo.id} productInfo={productInfo} />
                 })}
             </div>
             <div className="product-list-buttons">
                 <button onClick={() => addProduct()}>Add New Product</button>
                 <button onClick={() => deleteProduct()}>Delete Product by ID</button>
-                <button onClick={() => updateVisibleList()}>Show Only R&B</button>
+                <button onClick={() => updateVisibleList()}>Show/Hide R&B Genre</button>
             </div>
         </div>
     )

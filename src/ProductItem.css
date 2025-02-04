@@ -1,3 +1,7 @@
+.subheader {
+    font-weight: 800;
+}
+
 .product-item {
     display: flex;
     flex-direction: column;

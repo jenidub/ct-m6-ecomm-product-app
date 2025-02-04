@@ -37,7 +37,8 @@ function App() {
     {
       id: 3, 
       name: "Best of Whitney Houston", 
-      price: 39.99, description: "Listen to the top hits from the legendary music icon Whitney Houston", 
+      price: 39.99, 
+      description: "Listen to the top hits from the legend Whitney Houston", 
       imageLink:"https://cdn.shoplightspeed.com/shops/636018/files/38682664/1500x4000x3/sony-houston-whitney-i-will-always-love-you-the-be.jpg", 
       genre: "R&B",
       inStock: "No"
