@@ -1,3 +1,23 @@
 .product-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 30%;
+    background-color: white;
+    margin: 10px 5px;
+    padding: 10px;
+    color: black;
+}
+
+.product-item img {
+    margin: 5px;
+    padding: 5px;
+    /* width: 250px; */
+    height: 125px;
+}
+
+.product-item-desc {
+    padding: 5px 0px;
+    width: 80%;
 }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import ProductList from './ProductList'
 
-// 1️⃣App Component (Parent Component)
+// 1️⃣ App Component (Parent Component)
 // This is the main component where you will manage the state for the list of products and 
 // pass this data as props to child components.
 
@@ -15,10 +15,10 @@ import ProductList from './ProductList'
 // BONUS: Add a new attribute to each product (like "category") and filter products based on the category.
 
 function App() {
-  const [ productList, setProductList ] = useState([ 
+  const initialInventory = [ 
     {
-      key: 1,
-      name: "Wicked the Movie Sdtrk",
+      id: 1,
+      name: "Wicked Part 1 Soundtrack",
       price: 29.99,
       description: "The original cast recording of the hit Broadway musical Wicked.",
       imageLink: "https://shop.republicrecords.com/cdn/shop/files/REPU-0153_CollectionPage_Prods-01_0003_TargetLP.png?v=1728425734&width=900",
@@ -26,36 +26,36 @@ function App() {
       inStock: "Yes"
     },
     {
-      key: 2,
+      id: 2,
       name: "Best of Maverick City Music",
       price: 39.99,
       description: "Live edition of the Oakland Arena concert - Tour Exclusive",
-      imageLink: "https://store.elevationchurch.org/cdn/shop/products/OCB_VINYLcopy.jpg?v=1619815074",
+      imageLink: "https://m.media-amazon.com/images/I/41ncDFBYgkL._UXNaN_FMjpg_QL85_.jpg",
       genre: "Gospel",
       inStock: "No"
     },
     {
-      key: 3, 
-      name: "Lizzo", 
-      price: 24.99, 
-      description: "The album that started it all for the worldwide megastar Lizzo.", 
-      imageLink: "https://i.discogs.com/63Il66qYl9hE1VSVL4cTBENrT16UrodtnUvNfRrfkkc/rs:fit/g:sm/q:90/h:506/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MTgw/ODM3LTE1NjkzNjMx/NTAtMjg3My5qcGVn.jpeg", 
-      genre: "R&B",
-      inStock: "Yes"
-    },
-    {
-      key: 4, 
+      id: 3, 
       name: "Best of Whitney Houston", 
       price: 39.99, description: "Listen to the top hits from the legendary music icon Whitney Houston", 
       imageLink:"https://cdn.shoplightspeed.com/shops/636018/files/38682664/1500x4000x3/sony-houston-whitney-i-will-always-love-you-the-be.jpg", 
       genre: "R&B",
-      inStock: "No"},
-  ])
+      inStock: "No"
+    },
+  ]
+
+  const [ productList, setProductList ] = useState(initialInventory)
+  const [ visibleProducts, setVisibleProducts ] = useState(initialInventory)
 
   return (
     <>
       <div>
-        <ProductList productList={productList} setProductList={setProductList} />
+        <ProductList
+          productList={productList}
+          setProductList={setProductList}
+          visibleProducts={visibleProducts}
+          setVisibleProducts={setVisibleProducts}
+        />
       </div>
     </>
   )
