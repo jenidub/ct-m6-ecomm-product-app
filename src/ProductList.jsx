@@ -1,31 +1,35 @@
-// 2️⃣ ProductList ComponentThis component will receive the list of products 
-// from the App component as a prop and will map through them to display each product.
+// Import Statements for PropTypes (data verification), CSS styling for the component, 
+// and the ProductItem component
 import PropTypes from "prop-types";
 import ProductItem from "./ProductItem";
 import './ProductList.css'
 
-// Tasks for students:
-// Create a component that takes the product list as a prop and maps through it.
-// For each product, render a ProductItem component. Apply custom CSS to style the product list.
-
-function ProductList({ productList, setProductList, visibleProducts, setVisibleProducts }) {
+// 2️⃣ ProductList Component
+// For each product, render a ProductItem component and apply custom CSS to style the product list.
+function ProductList({ productList, setProductList, visibleProducts, setVisibleProducts }) {    
+    // addProduct method
+    // Prompts the user to enter details about a new product to list on the site
+    // After collecting the info from the user, a new product object is created and added to the product list
     const addProduct = () => {
         const newProduct = {}
         let currentProductList = productList;
     
         newProduct.name = prompt("Enter the name of the new album: ");
         newProduct.price = prompt("Enter the listing price (ex. 19.99): ");
-        newProduct.imageLink = prompt("Please copy and paste the image link for the product: ");
+        newProduct.imageLink = "https://placehold.co/200x150"
         newProduct.description = prompt("Please enter a brief description of the album: ");
         newProduct.genre = prompt("What is the primary genre for the album: ");
-        newProduct.id = productList.length += 1;
+        newProduct.id = Math.floor(Math.random() * 1000);
         newProduct.inStock = "Yes";
-        
+
         currentProductList.push(newProduct)
         setProductList([...currentProductList])
         setVisibleProducts([...currentProductList])
     }
 
+    // deleteProduct method
+    // Prompts the user for the product ID they would like to delete from the productList
+    // Updates the state for productList and visibleProducts to reflect the deletion
     const deleteProduct = () => {
         let currentProductList = productList;
         let foundIndex = -1;
@@ -45,6 +49,9 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
         }
     }
 
+    // updateVisisbleList method
+    // Filters the visibleProducts list to only show products with the genre "R&B"
+    // If the view is already filtered, it will restore the view to the full productList
     const updateVisibleList = () => {
         let visibleListNow = visibleProducts;
         let filteredList = visibleListNow.filter((product) => product.genre === "R&B")
@@ -56,16 +63,20 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
         }
     }
 
+    // Render of the ProductList component
+    // Includes the header, the list of products, and buttons for the three methods
     return (
         <div>
             <h1 className="rampart-one-header">Welcome to the JeniDub Record Shop</h1>
             <h2>Here is the list of products we have for all of you vintage lovers out there!</h2>
-            <div className="product-list">
+            <div className="product-item-container">
+                {/* Map the visibleProducts array to render a ProductItem component for each product */}
                 {visibleProducts.map((productInfo) => {
                     return <ProductItem key={productInfo.id} productInfo={productInfo} />
                 })}
             </div>
-            <div className="product-list-buttons">
+            {/* Buttons for adding a new product, deleting a product by ID, and updating the visible list */}
+            <div className="buttons-container">
                 <button onClick={() => addProduct()}>Add New Product</button>
                 <button onClick={() => deleteProduct()}>Delete Product by ID</button>
                 <button onClick={() => updateVisibleList()}>Show/Hide R&B Genre</button>
@@ -76,6 +87,8 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
 
 export default ProductList;
 
+// PropTypes for the ProductList component
+// Check the passed data type for each prop and check if it is required
 ProductList.propTypes = {
     productList: PropTypes.array.isRequired,
     initialProductList: PropTypes.array,

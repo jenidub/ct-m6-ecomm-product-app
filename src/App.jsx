@@ -1,41 +1,32 @@
+// Import Statements - useState, CSS styling for the App component, and the ProductList component 
 import { useState } from 'react'
 import './App.css'
 import ProductList from './ProductList'
 
 // 1️⃣ App Component (Parent Component)
-// This is the main component where you will manage the state for the list of products and 
-// pass this data as props to child components.
-
-// Tasks for students:
-// Create a state that holds an array of products (each product 
-// can have attributes like id, name, price, and description).
-// Pass the list of products as a prop to the ProductList component.
-// Style the main structure of the app using CSS.
-
-// BONUS: Add a new attribute to each product (like "category") and filter products based on the category.
-
 function App() {
+  // Set an initial inventory list for the store - an array of objects
   const initialInventory = [ 
     {
-      id: 1,
+      id: 549,
       name: "Wicked Part 1 Soundtrack",
       price: 29.99,
-      description: "The original cast recording of the hit Broadway musical Wicked.",
+      description: "The original cast recording of the hit Broadway musical Wicked",
       imageLink: "https://shop.republicrecords.com/cdn/shop/files/REPU-0153_CollectionPage_Prods-01_0003_TargetLP.png?v=1728425734&width=900",
       genre: "Broadway",
       inStock: "Yes"
     },
     {
-      id: 2,
+      id: 178,
       name: "Best of Maverick City Music",
       price: 39.99,
-      description: "Live edition of the Oakland Arena concert - Tour Exclusive",
+      description: "Tour exclusive live recording of the Oakland Arena concert",
       imageLink: "https://m.media-amazon.com/images/I/41ncDFBYgkL._UXNaN_FMjpg_QL85_.jpg",
       genre: "Gospel",
       inStock: "No"
     },
     {
-      id: 3, 
+      id: 344, 
       name: "Best of Whitney Houston", 
       price: 39.99, 
       description: "Listen to the top hits from the legend Whitney Houston", 
@@ -45,9 +36,12 @@ function App() {
     },
   ]
 
+  // Set up state for the product list and the list of visible products (to be used in updateVisibility method)
   const [ productList, setProductList ] = useState(initialInventory)
   const [ visibleProducts, setVisibleProducts ] = useState(initialInventory)
 
+  // Render the ProductList component and pass in the product list, visible products in addition
+  // the update state methods for each
   return (
     <>
       <div>

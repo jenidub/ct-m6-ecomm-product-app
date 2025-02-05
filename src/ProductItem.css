@@ -1,7 +1,13 @@
+/* Utility Classes */
 .subheader {
     font-weight: 800;
 }
 
+.product-item-spacing {
+    margin: 5px 0px;
+}
+
+/* Component Class Level Styling */
 .product-item {
     display: flex;
     flex-direction: column;
@@ -15,13 +21,32 @@
 }
 
 .product-item img {
-    margin: 5px;
     padding: 5px;
-    /* width: 250px; */
-    height: 125px;
+    height: 150px;
+}
+
+.product-item-price {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.product-item-id {
+    font-style: italic;
 }
 
 .product-item-desc {
-    padding: 5px 0px;
     width: 80%;
+}
+
+/* In Stock Span Styling for Yes/No Status */
+.in-stock-yes {
+    color: green;
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+.in-stock-no {
+    color: red;
+    font-size: 1.2em;
+    font-weight: 800;
 }
