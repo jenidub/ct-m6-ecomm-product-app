@@ -1,6 +1,6 @@
 // Import Statements for PropTypes (data verification), CSS styling for the component
 import PropTypes from "prop-types";
-import "./ProductItem.css";
+import '../css/ProductItem.css';
 
 // 3️⃣ ProductItem Component
 // Render the product listing for a single product in the store 

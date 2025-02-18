@@ -1,6 +1,6 @@
 // Import Statements - useState, CSS styling for the App component, and the ProductList component 
 import { useState } from 'react'
-import './App.css'
+import '../css/App.css'
 import ProductList from './ProductList'
 
 // 1️⃣ App Component (Parent Component)

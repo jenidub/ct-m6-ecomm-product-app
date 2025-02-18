@@ -2,7 +2,11 @@
 // and the ProductItem component
 import PropTypes from "prop-types";
 import ProductItem from "./ProductItem";
-import './ProductList.css'
+import '../css/ProductList.css'
+
+// ** FEATURE UPDATE **
+// Develop another component like a ProductForm that uses the input elements, 
+// so you can render when the user clicks the add a new product button.
 
 // 2️⃣ ProductList Component
 // For each product, render a ProductItem component and apply custom CSS to style the product list.
@@ -52,9 +56,9 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
     // updateVisisbleList method
     // Filters the visibleProducts list to only show products with the genre "R&B"
     // If the view is already filtered, it will restore the view to the full productList
-    const updateVisibleList = () => {
+    const updateVisibleList = (genre) => {
         let visibleListNow = visibleProducts;
-        let filteredList = visibleListNow.filter((product) => product.genre === "R&B")
+        let filteredList = visibleListNow.filter(product => product.genre === genre)
 
         if (visibleListNow.length !== filteredList.length) {
             setVisibleProducts([...filteredList])
@@ -79,7 +83,7 @@ function ProductList({ productList, setProductList, visibleProducts, setVisibleP
             <div className="buttons-container">
                 <button onClick={() => addProduct()}>Add New Product</button>
                 <button onClick={() => deleteProduct()}>Delete Product by ID</button>
-                <button onClick={() => updateVisibleList()}>Show/Hide R&B Genre</button>
+                <button onClick={() => updateVisibleList("R&B")}>Show/Hide R&B Genre</button>
             </div>
         </div>
     )
